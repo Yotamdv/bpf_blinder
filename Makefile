@@ -1,10 +1,10 @@
-all: kmsg_simple kmsg_simple_static
+# Definition of the module object file
+obj-m += bpf_blinder.o
 
-kmsg_simple:
-	g++ -O2 -std=c++17 main.cpp -o kmsg_simple
+# Default target: builds the kernel module using the kernel build system
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
-kmsg_simple_static:
-	g++ -O2 -std=c++17 -static main.cpp -o kmsg_simple_static
-
+# Clean target: removes generated build files and binaries
 clean:
-	rm -f kmsg_simple kmsg_simple_static
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
