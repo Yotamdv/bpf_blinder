@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-Proof of Concept: Silent eBPF Neutralization via Initramfs Injection
-=======
-# initramfs-file-access-poc
-=======
 #  bpf_blinder 🛡️👻
->>>>>>> b06a8a4 (bpf_blinder code and docs)
 
 Proof of Concept: Silent eBPF Neutralization via Initramfs Injection
 
@@ -27,11 +20,6 @@ It is designed to run EXCLUSIVELY in isolated Virtual Machines (VMs).
 
 Running this on a production system or physical hardware may cause irreversible system crashes (Kernel Panic) and data corruption.
 
-<<<<<<< HEAD
-In this research context, /dev/kmsg provides a persistent and verifiable way to record evidence of actions that occur during the initramfs stage.
-Because the kernel log survives through the boot process, messages written at this early stage remain visible after the system has fully booted, allowing researchers to confirm that the PoC executed successfully before any userspace or eBPF-based monitoring began.
->>>>>>> e6ad387 (Create README.md)
-=======
 The authors are not responsible for any damage caused by the misuse of this software.
 
 # 📋 Prerequisites
@@ -133,4 +121,3 @@ CR0 Register Manipulation: The code explicitly toggles the Write Protect (WP) bi
 ## 📝 License
 
 Distributed under the GPL v2 License. See LICENSE for more information.
->>>>>>> b06a8a4 (bpf_blinder code and docs)
