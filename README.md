@@ -1,0 +1,1 @@
+Proof of Concept: Silent eBPF Neutralization via Initramfs Injection
